@@ -20,6 +20,13 @@
 
 <body>
     <div class="container">
+        <!-- Gemini App Branding Header -->
+<div class="branding-header">
+    <img src="bot.png" alt="Gemini Logo" class="branding-logo">
+    <span class="branding-name">Gemini Chat</span>
+    <button id="theme-toggle-btn" class="material-icons-outlined">light_mode</button>
+</div>
+
         <!-- App Header -->
         <header class="app-header">
             <h1 class="heading">Hello, there</h1>
@@ -57,16 +64,13 @@
 
 
                     <div class="prompt-actions">
-                        <div class="file-upload-wrapper">
-                            <img src="#" alt="file" class="file-preview">
-                            <input type="file" accept="image/*, .pdf, .txt, .csv" id="file-input" hidden>
-                            <button type="button" class="file-icon material-symbols-rounded">description</button>
-
-                            <button id="add-file-btn" type="button" class="material-icons-outlined">attach_file</button>
-                           <button id="cancel-file-btn" type="button" class="material-icons-outlined">close</button>
-
-
-                        </div>
+    <div class="file-upload-wrapper">
+        <img src="#" alt="file" class="file-preview">
+        <input type="file" accept="image/*, .pdf, .txt, .csv" id="file-input" hidden>
+        <button id="add-file-btn" type="button" class="material-icons-outlined">attach_file</button>
+        <button id="cancel-file-btn" type="button" class="material-icons-outlined">close</button>
+        <button class="file-icon material-symbols-rounded">description</button>
+    </div>
                         
                         <button type="button" id="stop-response-btn" class="material-icons-outlined">stop_circle</button>
                         <button id="send-prompt-btn" class="material-icons-outlined">arrow_upward</button>
@@ -74,7 +78,7 @@
                     
                 </form>
 
-                <button id="theme-toggle-btn" class="material-icons-outlined">light_mode</button>
+                
                 <button id="delete-chats-btn" class="material-icons-outlined">delete</button>
             </div>
             <p class="disclaimer-text">AI can make mistake, so double check it.</p>

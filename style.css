@@ -32,6 +32,7 @@ body{
     background: var(--primary-color);
 }
 
+
 .container{
     overflow-y: auto;
 
@@ -65,6 +66,55 @@ max-width: 980px;
     font-size: 2.6rem;
     margin-top: -5px;
     color: var(--subheading-color);
+}
+
+/* Branding Header */
+.branding-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+   
+    
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 12px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.branding-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.branding-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.branding-header #theme-toggle-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.branding-header #theme-toggle-btn:hover {
+    background: var(--secondary-hover-color);
+    transform: scale(1.05);
 }
 
 /* suggestion style */
@@ -140,9 +190,13 @@ body.chats-active .container :where(.app-header, .suggestion){
     
 }
 
+
+
 .chats-container .message{
     display: flex;
-    
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 12px 16px;
     gap: 11px;
     align-items: center;
 }
@@ -223,13 +277,15 @@ body.chats-active .container :where(.app-header, .suggestion){
 
 /* prompt style */
 
-.prompt-container{
+.prompt-container {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding:16px 0;
+    padding: 12px 16px;
     background: var(--primary-color);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
 
 .prompt-container :where(.prompt-wrapper, .prompt-form, .prompt-actions){
@@ -237,6 +293,13 @@ body.chats-active .container :where(.app-header, .suggestion){
     gap: 12px;
     height: 56px;
     align-items: center;
+}
+
+.prompt-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .prompt-wrapper .prompt-form{
@@ -353,7 +416,7 @@ body.bot-responding .prompt-form #stop-response-btn{
 
 @media (max-width: 768px) {
     .container{
-        padding: 20px;
+        padding: 10px;
 
     }
 
