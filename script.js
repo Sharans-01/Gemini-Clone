@@ -112,12 +112,13 @@ const generateResponse = async (userMessage) => {
     if (!loadingMsg) return;
 
     try {
-        const response = await fetch("/.netlify/functions/geminiProxy", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ contents: chatHistory }),
-            signal: controller.signal
-        });
+       const response = await fetch("/.netlify/functions/geminiProxy", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: userMessage }),
+  signal: controller.signal
+});
+
 
         const data = await response.json();
         if (!response.ok) {
