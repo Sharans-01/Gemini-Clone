@@ -16,8 +16,8 @@
     "url": "https://github.com/Sharans-01/Gemini-Clone/issues"
   },
   "homepage": "https://github.com/Sharans-01/Gemini-Clone#readme",
-  "description": "",
   "dependencies": {
     "node-fetch": "^3.3.2"
-  }
+  },
+  "description": ""
 }

@@ -120,11 +120,15 @@ const generateResponse = async (userMessage) => {
         });
 
         const data = await response.json();
-        if (!response.ok) throw new Error(data.error.message);
+        if (!response.ok) {
+  const errMsg = data?.error?.message || "Unknown error from server";
+  throw new Error(errMsg);
+}
+console.log("API response:", data);
 
-        console.log(data);
 
-        const botReplyRaw = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm not sure how to respond.";
+       const botReplyRaw = (data?.candidates && data.candidates[0]?.content?.parts?.[0]?.text) || "I'm not sure how to respond.";
+
         const botReplyHtml = markdownToHtml(botReplyRaw);
 
         loadingMsg.remove();
