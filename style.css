@@ -90,8 +90,9 @@ max-width: 980px;
 }
 
 .branding-name {
+    font-family: "Roboto slab", sans-serif;
     font-size: 1.4rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-color);
     margin-left: 10px;
     flex-grow: 1;

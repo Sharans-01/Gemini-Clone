@@ -42,7 +42,7 @@ const createMsgElement = (content, isBot = false, ...classes) => {
 
     if (isBot) {
         const avatar = document.createElement("img");
-        avatar.src = "gemini.svg";
+        avatar.src = "bot.png";
         avatar.alt = "G";
         avatar.classList.add("avatar");
         div.appendChild(avatar);
