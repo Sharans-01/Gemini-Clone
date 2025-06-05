@@ -6,8 +6,8 @@ const fileInput = promptForm.querySelector("#file-input");
 const fileUploadWrapper = promptForm.querySelector(".file-upload-wrapper");
 const themeToggle = document.querySelector("#theme-toggle-btn");
 
- 
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+// const API_KEY = "AIzaSyCt2SGMnk8XCcI5MaLvRGsgGTbGI0R35gA";
+// const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 let interval, controller;
 const chatHistory = [];
@@ -112,7 +112,7 @@ const generateResponse = async (userMessage) => {
     if (!loadingMsg) return;
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch("/.netlify/functions/geminiProxy", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ contents: chatHistory }),
