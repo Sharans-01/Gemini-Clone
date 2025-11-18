@@ -1,22 +1,28 @@
+// File: netlify/functions/geminiProxy.js
+
 exports.handler = async (event) => {
-  const fetch = (await import('node-fetch')).default; // ✅ dynamic import for ESM compatibility
-
   try {
-    const API_KEY = process.env.GEMINI_API_KEY;
+    const fetch = (await import("node-fetch")).default;
 
+    const API_KEY = process.env.GEMINI_API_KEY;
     if (!API_KEY) {
-      throw new Error("GEMINI_API_KEY not defined");
+      throw new Error("Missing GEMINI_API_KEY in environment variables");
     }
 
-    const body = JSON.parse(event.body || '{}');
+    // Parse incoming body
+    const body = JSON.parse(event.body || "{}");
     const userMessage = body.message;
 
     if (!userMessage) {
-      throw new Error("No message provided in body");
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Message is required" }),
+      };
     }
 
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+    // Gemini API call
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,21 +37,23 @@ exports.handler = async (event) => {
       }
     );
 
-    const geminiData = await geminiRes.json();
+    const data = await response.json();
 
-    if (!geminiRes.ok) {
-      throw new Error(geminiData.error?.message || "Gemini API Error");
+    if (!response.ok) {
+      throw new Error(data.error?.message || "Gemini API Error");
     }
 
+    // Success — send Gemini response back to frontend
     return {
       statusCode: 200,
-      body: JSON.stringify(geminiData),
+      body: JSON.stringify(data),
     };
   } catch (err) {
-    console.error("Function error:", err);
+    console.error("Server Error:", err);
+
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: err.message || "Unknown server error" }),
+      body: JSON.stringify({ error: err.message }),
     };
   }
 };
